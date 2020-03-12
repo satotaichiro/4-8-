@@ -1,23 +1,27 @@
-<h1>Books<h1>
+<h2>Books</h2>
 
 	<table>
 	<tr>
 		<th>title</th>
 		<th>body</th>
 	</tr>
-	</table>
 
 	<!--取得・一覧のリストをここに出す-->
 	<% @books.each do |book| %>
 	<tbody>
 	<tr>
-		<th><%= book.title %></th>
-		<th><%= book.body %></th>
+		<td><%= book.title %></td>
+		<td><%= book.body %></td>
+		<td><%= link_to "show", book_path(book.id) %>
+			<%= link_to "edit", edit_book_path(book.id) %>
+			<%= link_to "destroy", book_path(book), method: :delete,"data-confirm" =>"Are you sure?" %>
+		</td>
 	</tr>
 	</tbody>
 	<% end %>
+</table>
 
-<h2>New book<h2>
+<h3>New book<h3>
 <%= form_for(@book) do |f| %>
 <% if @book.errors.any? %>
     <h3>入力した内容にエラーが<%= @book.errors.count %>件あります</h3>
